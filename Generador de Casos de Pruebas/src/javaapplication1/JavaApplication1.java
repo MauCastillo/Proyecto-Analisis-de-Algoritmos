@@ -27,11 +27,13 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         String input = JOptionPane.showInputDialog(null,"Escriva el numero de registros para generar"); /*Ingrese el Numero de registro Que desea Obtener Para la Pruebas mas el valor de 1*/ 
-        Random na = new Random(3);
+         String input = JOptionPane.showInputDialog(null,"Escriba el numero de registros para generar"); /*Ingrese el Numero de registro Que desea Obtener Para la Pruebas mas el valor de 1*/ 
+        //No de arboles
+         Random na = new Random(3);
         int Numeros_Registro = Integer.parseInt(input)+1;
-              
+        //Costo total      
         Random ct = new Random(1);
+        //No de empleados
         Random ne = new Random(8);
         ArrayList<String> salida = new ArrayList<>();
 
@@ -47,12 +49,28 @@ public class JavaApplication1 {
         int nu = Numeros_Registro - 1;
         salida.add("" + nu);
         while (contador < Numeros_Registro) {
+            //Fechas se dan en un rando de 2016 a 2018
             unaFecha.set(aleatorio.nextInt(2) + 2016, aleatorio.nextInt(12) + 1, aleatorio.nextInt(30) + 1);
             Date date1 = unaFecha.getTime();
-            unaFecha.set(aleatorio.nextInt(2) + 2016, aleatorio.nextInt(12) + 1, aleatorio.nextInt(30) + 1);
+            unaFecha.set(aleatorio.nextInt(3) + 2016, aleatorio.nextInt(12) + 1, aleatorio.nextInt(30) + 1);
             Date date2 = unaFecha.getTime();
+            //Si la fecha es anterior a la fecha de inicio agrega el objeto
             if (date1.before(date2)) {
-                String entrada = contador + " " + na.nextInt(3)+20 + " " + ct.nextInt(3)+25 + " " + sdf.format(date1) + " " + sdf.format(date2) + " " + ne.nextInt(4)+30;
+                
+                String na_2 = na.nextInt(9)+""+ na.nextInt(9)+""+ na.nextInt(9);
+                if(na_2.equals("000")){
+                    na_2="123";
+                }
+                String ct_2 = na.nextInt(9)+""+ na.nextInt(9)+""+ na.nextInt(9);
+                if(ct_2.equals("000")){
+                    ct_2="213";
+                }
+                String ne_2 = na.nextInt(9)+""+ na.nextInt(9)+""+ na.nextInt(9);
+                if(ne_2.equals("000")){
+                    ne_2="312";
+                }
+                //Se anexa a entrada el no. de rodal, numero de arboles, costo total, fecha de inicio y fin, y numero de empleados
+                String entrada = contador + " " + na_2 + " " + ct_2 + " " + sdf.format(date1) + " " + sdf.format(date2) + " " + ne_2;
                 salida.add(entrada);
                 contador++;
             }
