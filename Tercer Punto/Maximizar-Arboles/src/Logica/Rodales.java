@@ -14,9 +14,9 @@ import javax.swing.JOptionPane;
  *
  * @author Soporte
  */
-public class Rodal implements Comparable<Rodal> {
+public class Rodales implements Comparable<Rodales> {
 
-    public Rodal() {
+    public Rodales() {
     }
 
     //Declaracion 
@@ -29,7 +29,7 @@ public class Rodal implements Comparable<Rodal> {
     int numero_empleados;
     SimpleDateFormat cambio_Formato_Fecha = new SimpleDateFormat("dd/MM/yyyy");
 
-    public Rodal(int id, int numero_arboles, int costo_estimado, String fecha_inicio, String fecha_fin, int numero_empleados) {
+    public Rodales(int id, int numero_arboles, int costo_estimado, String fecha_inicio, String fecha_fin, int numero_empleados) {
         this.id = id;
         this.numero_arboles = numero_arboles;
         this.costo_estimado = costo_estimado;
@@ -101,7 +101,7 @@ public class Rodal implements Comparable<Rodal> {
     }
 
     @Override
-    public int compareTo(Rodal other) {
+    public int compareTo(Rodales other) {
         return fecha_fin.compareTo(other.fecha_fin);
     }
 

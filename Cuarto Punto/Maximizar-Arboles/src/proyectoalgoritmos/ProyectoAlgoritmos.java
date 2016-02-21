@@ -6,7 +6,7 @@
 package proyectoalgoritmos;
 
 import Logica.Algoritmos;
-import Logica.Rodal;
+import Logica.Rodales;
 import ModuloArchivos.Lectura;
 import java.util.ArrayList;
 import Logica.Funcionalidades;
@@ -26,19 +26,19 @@ public class ProyectoAlgoritmos {
      */
     public static void main(String[] args) {
         /*Ingreso de Umbral de costo costo*/
-        try {
+        //try {
 
             Lectura lectura = new Lectura();
             Algoritmos ordenamieto = new Algoritmos();
             Funcionalidades funcionalidades = new Funcionalidades();
-            ArrayList<Rodal> c = lectura.ReadFile();
+            ArrayList<Rodales> c = lectura.ReadFile();
             funcionalidades.umbral = lectura.getUmbral();
 
 
 //Ordeno el arreglo con el algoritmo mergeSort Complejida  O(nlogn)
-            ArrayList<Rodal> MergeOut = ordenamieto.mergeSort(c);
+            ArrayList<Rodales> MergeOut = ordenamieto.mergeSort(c);
             
-            ArrayList<Rodal> print = new ArrayList<>();
+            ArrayList<Rodales> print = new ArrayList<>();
             funcionalidades.entrada = MergeOut;
 
            
@@ -54,7 +54,7 @@ public class ProyectoAlgoritmos {
                 funcionalidades.Solucion.clear();
 
                 print = funcionalidades.MaximoNumeroRodales(i); //Calculo es costo de tiempo del algoritmo// 
-                print = funcionalidades.MaximoNumeroRodalesReverse(i);
+                //print = funcionalidades.MaximoNumeroRodalesReverse(i);
                 funcionalidades.Probar();
             }
             time_end = System.currentTimeMillis();
@@ -62,9 +62,9 @@ public class ProyectoAlgoritmos {
             System.out.println("++++++++++++ Mayor Numero de Rodales --------------- - ");
             funcionalidades.ImprimirArchivo(funcionalidades.mayorNumeroArboles);
             /*Excepciones Definidas*/
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, " Usted no ingreso un valor de umbral valido", "ERROR FORMATO UMBRAL", 0);
-        }
+       // } catch (Exception ex) {
+       //     JOptionPane.showMessageDialog(null, " Usted no ingreso un valor de umbral valido", "ERROR FORMATO UMBRAL", 0);
+       // }
 
     }
 
