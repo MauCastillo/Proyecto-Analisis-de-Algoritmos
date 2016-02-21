@@ -37,7 +37,7 @@ public class Funcionalidades {
             Solucion.add(entrada.get(inicio));
             umbral -= entrada.get(inicio).numero_arboles;
         }
-        for (int i = inicio; i < entrada.size(); i++) {
+        for (int i = inicio + 1; i < entrada.size(); i++) {
             Date date1 = Solucion.get(Solucion.size() - 1).fecha_fin;
             Date date2 = entrada.get(i).fecha_inicio;
 
@@ -46,7 +46,7 @@ public class Funcionalidades {
                 if (test >= 0) {
                     Solucion.add(entrada.get(i));
                 }
-            } else {
+            } else if (Solucion.size() > 2) {
                 int beneficio_anterior = Solucion.get(Solucion.size() - 1).numero_arboles;
                 int beneficio_presente = Solucion.get(i).numero_arboles;
                 if (beneficio_anterior < beneficio_presente) {
