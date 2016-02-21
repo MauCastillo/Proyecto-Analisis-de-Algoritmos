@@ -22,6 +22,7 @@ public class Algoritmos {
         return salidaMersort;
     }
     /* Este algoritmo de ordenamieto tiene una complejida de O(n) */
+
     /**
      * Counting Sort function de ordenamieto de arboles adaptada Mauro Castillo
      * Este algoritmo lo hize basado en el webSite
@@ -31,8 +32,8 @@ public class Algoritmos {
      * @param entrada
      */
     /*Complejida O(n^2)
-    InsertionSort  Implementado para rodales partiendo de la caracteristica numero arboles*/
-    
+     InsertionSort  Implementado para rodales partiendo de la caracteristica numero arboles*/
+
     public ArrayList<Rodal> InsertionSort(ArrayList<Rodal> entrada) {
         ArrayList<Rodal> temporal = entrada;
         Rodal key = new Rodal();
@@ -52,9 +53,10 @@ public class Algoritmos {
         temporal.remove(0);
         return temporal;
     }
-/*Complejida O(nlgn) diseñado para ordenar las fechas de finalizacion de menor a Mayor
-    La modificaion de coparacion esta en la clase rodal*/
-    public ArrayList <Rodal> mergeSort(ArrayList<Rodal> a) {
+    /*Complejida O(nlgn) diseñado para ordenar las fechas de finalizacion de menor a Mayor
+     La modificaion de coparacion esta en la clase rodal*/
+
+    public ArrayList<Rodal> mergeSort(ArrayList<Rodal> a) {
         ArrayList<Rodal> tmpArray = new ArrayList<>();
         for (int i = 0; i < a.size(); i++) {
             tmpArray.add(a.get(i));
@@ -103,7 +105,7 @@ public class Algoritmos {
             a.set(rightEnd, tmpArray.get(rightEnd));
         }
         salidaMersort = a;
-        
+
     }
-    
+
 }

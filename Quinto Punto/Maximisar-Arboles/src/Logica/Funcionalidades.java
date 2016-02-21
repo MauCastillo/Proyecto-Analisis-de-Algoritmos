@@ -20,8 +20,14 @@ public class Funcionalidades {
     int maximoNumeroArboles = 0;
     int tmpNumeroArboles = 0;
     int tmparbol = 0;
+
+    int maximoNumeroEmpleados = 0;
+    int tmpNumeroEmpleados = 0;
+    int tmpempleado = 0;
+
     int costo = 0;
     public int umbral = 0;
+    public int umbralempleados = 0;
     public ArrayList<Rodal> entrada = new ArrayList<>();
     public ArrayList<Rodal> mayorNumeroArboles = new ArrayList<>();
     public ArrayList<Rodal> mayorNumeroArbolesTemporal = new ArrayList<>();
@@ -33,11 +39,14 @@ public class Funcionalidades {
      Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
     public ArrayList<Rodal> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
-        System.out.println("+++++++++++++ Punto " + punto + " entrada " + entrada.size());
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
         //Almaceno el valor de numero de arboles par saber quien es mayor
         mayorNumeroArbolesTemporal.add(inicial_Rodal);
+        //Contador de numero de empleados
+        tmpNumeroEmpleados += inicial_Rodal.numero_empleados;
+        tmpempleado += inicial_Rodal.numero_empleados;
+        //Contador de Numero de Arboles
         tmpNumeroArboles += inicial_Rodal.numero_arboles;
         tmparbol += inicial_Rodal.numero_arboles;
 
@@ -48,9 +57,13 @@ public class Funcionalidades {
 
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
+                //Almacenamiento de Valores de empleados
+                tmpNumeroEmpleados += entrada.get(i).numero_empleados;
+                tmpempleado += entrada.get(i).numero_empleados;
+                //Almacenamientos de valores de arboles
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
                 tmparbol += entrada.get(i).numero_arboles;
-                
+
                 mayorNumeroArbolesTemporal.add(entrada.get(i));
                 System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
@@ -74,8 +87,12 @@ public class Funcionalidades {
 
             if (date2.before(date1)) {
                 salida.add(entrada.get(i));
+                //Almacenamiento de empleados
+                tmpNumeroEmpleados += entrada.get(i).numero_empleados;
+                tmpempleado += entrada.get(i).numero_empleados;
+                //Almacenamiento de Arboles
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
-                tmparbol += entrada.get(i).costo_estimado;
+                tmparbol += entrada.get(i).numero_arboles;
                 if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
                     mayorNumeroArbolesTemporal.add(entrada.get(i));
                 }
@@ -91,7 +108,8 @@ public class Funcionalidades {
     //Ademas agrego la condicion de el umbral establecido
 
     public void Probar() {
-        if (tmpNumeroArboles > maximoNumeroArboles && tmparbol <= umbral ) {
+        if (tmpNumeroArboles > maximoNumeroArboles && tmparbol <= umbral && tmpNumeroEmpleados > maximoNumeroEmpleados && tmpempleado <= umbralempleados) {
+             maximoNumeroEmpleados = tmpNumeroEmpleados;
             maximoNumeroArboles = tmpNumeroArboles;
             costo = tmparbol;
             try {
@@ -101,8 +119,11 @@ public class Funcionalidades {
             }
             System.out.println("|||||||||||||||||||||| Ganador |||||||||||||| " + maximoNumeroArboles + " Costo " + costo);
         }
+        //Inicializacion de Variables
         tmpNumeroArboles = 0;
         tmparbol = 0;
+        tmpNumeroEmpleados = 0;
+        tmpempleado = 0;
         mayorNumeroArbolesTemporal.clear();
 
     }
@@ -125,6 +146,7 @@ public class Funcionalidades {
 //Imprime el informacion en un archivo plano
 //
 //    
+
     public void ImprimirArchivo(ArrayList<Rodal> entrada_arraylist) {
         Escritura escritura = new Escritura();
         ArrayList<Rodal> c = entrada_arraylist;

@@ -74,8 +74,9 @@ public class Funcionalidades {
 
             if (date2.before(date1)) {
                 salida.add(entrada.get(i));
+                //Almacenamiento de valores de arboles
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
-                tmparbol += entrada.get(i).costo_estimado;
+                tmparbol += entrada.get(i).numero_arboles;
                 if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
                     mayorNumeroArbolesTemporal.add(entrada.get(i));
                 }

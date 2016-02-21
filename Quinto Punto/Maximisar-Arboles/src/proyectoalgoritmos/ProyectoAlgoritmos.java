@@ -33,6 +33,7 @@ public class ProyectoAlgoritmos {
             Funcionalidades funcionalidades = new Funcionalidades();
             ArrayList<Rodal> c = lectura.ReadFile();
             funcionalidades.umbral = lectura.getUmbral();
+            funcionalidades.umbralempleados = lectura.getUmbralEmpleados();
 
 
 //Ordeno el arreglo con el algoritmo mergeSort Complejida  O(nlogn)

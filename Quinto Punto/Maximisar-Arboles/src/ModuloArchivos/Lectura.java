@@ -31,12 +31,15 @@ public class Lectura {
     int numero_empleados;
     public int numero_maximo_arboles;
     int umbral;
+    int umbralEmpleados;
+
+    public int getUmbralEmpleados() {
+        return umbralEmpleados;
+    }
 
     public int getUmbral() {
         return umbral;
     }
-
-
 
     public ArrayList<Rodal> ReadFile() {
         numero_maximo_arboles = 0;
@@ -61,10 +64,13 @@ public class Lectura {
 
             while ((linea = br.readLine()) != null) {
 
-                if(contador == 1){
+                if (contador == 1) {
                     umbral = Integer.parseInt(linea);
                 }
-                if (contador > 1) {
+                if (contador == 2) {
+                    umbralEmpleados = Integer.parseInt(linea);
+                }
+                if (contador > 2) {
                     //Esta funcion separa los caracteres presentes en las lineas
                     StringTokenizer tokens = new StringTokenizer(linea);
                     id = Integer.parseInt(tokens.nextToken());
