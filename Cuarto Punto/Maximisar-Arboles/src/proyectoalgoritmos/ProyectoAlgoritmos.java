@@ -6,7 +6,7 @@
 package proyectoalgoritmos;
 
 import Logica.Algoritmos;
-import Logica.Rodales;
+import Logica.Rodal;
 import ModuloArchivos.Lectura;
 import java.util.ArrayList;
 import Logica.Funcionalidades;
@@ -31,14 +31,14 @@ public class ProyectoAlgoritmos {
             Lectura lectura = new Lectura();
             Algoritmos ordenamieto = new Algoritmos();
             Funcionalidades funcionalidades = new Funcionalidades();
-            ArrayList<Rodales> c = lectura.ReadFile();
+            ArrayList<Rodal> c = lectura.ReadFile();
             funcionalidades.umbral = lectura.getUmbral();
 
 
 //Ordeno el arreglo con el algoritmo mergeSort Complejida  O(nlogn)
-            ArrayList<Rodales> MergeOut = ordenamieto.mergeSort(c);
+            ArrayList<Rodal> MergeOut = ordenamieto.mergeSort(c);
             
-            ArrayList<Rodales> print = new ArrayList<>();
+            ArrayList<Rodal> print = new ArrayList<>();
             funcionalidades.entrada = MergeOut;
 
            

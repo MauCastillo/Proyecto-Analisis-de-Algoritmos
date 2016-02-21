@@ -27,10 +27,11 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-         String input = JOptionPane.showInputDialog(null,"Escriva el numero de registros para generar"); /*Ingrese el Numero de registro Que desea Obtener Para la Pruebas mas el valor de 1*/ 
-        Random na = new Random(3);
+         String input = JOptionPane.showInputDialog(null,"Escriba el numero de registros para generar"); /*Ingrese el Numero de registro Que desea Obtener Para la Pruebas mas el valor de 1*/ 
+        //No de arboles
+         Random na = new Random(3);
         int Numeros_Registro = Integer.parseInt(input)+1;
-              
+        //Costo total      
         Random ct = new Random(1);
         Random ne = new Random(8);
         ArrayList<String> salida = new ArrayList<>();
