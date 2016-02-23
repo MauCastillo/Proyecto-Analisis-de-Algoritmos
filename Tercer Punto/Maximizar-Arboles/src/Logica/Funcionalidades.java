@@ -33,13 +33,10 @@ public class Funcionalidades {
      Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
     public ArrayList<Rodales> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
-        System.out.println("+++++++++++++ Punto " + punto + " entrada " + entrada.size());
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
         //Almaceno el valor de numero de arboles par saber quien es mayor
         Agregar(inicial_Rodal);
-        tmpNumeroArboles += inicial_Rodal.numero_arboles;
-
         //Este algoritmo resuel el problema del maximo numero de rodales permitido    
         for (int i = punto; i < entrada.size(); i++) {
             Date date1 = Solucion.get(Solucion.size() - 1).fecha_fin;
@@ -47,8 +44,6 @@ public class Funcionalidades {
 
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
-                tmpNumeroArboles += entrada.get(i).numero_arboles;
-
                 Agregar(entrada.get(i));
                 System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
@@ -59,21 +54,17 @@ public class Funcionalidades {
     /*Complejida O(n)
      Esta funcion separa en un punto del arreglo que identifique com la varieable inicio y compara si no se solapa con todos los elementos anteriores 
      a el*/
-    public ArrayList<Rodales> MaximoNumeroRodalesReverse(int inicio) {
+    public void MaximoNumeroRodalesReverse(int inicio) {
         int punto = inicio - 1;
         System.out.println("Punto " + punto + " entrada " + entrada.size());
-        ArrayList<Rodales> salida = new ArrayList<>();
+
         //entrada.
         //Este algoritmo resuel el problema del maximo numero de rodales permitido
         int contador = 1;
         for (int i = punto; i > 0; i--) {
             Date date1 = entrada.get(entrada.size() - contador).fecha_inicio;
             Date date2 = entrada.get(i).fecha_fin;
-
             if (date2.before(date1)) {
-                salida.add(entrada.get(i));
-                tmpNumeroArboles += entrada.get(i).numero_arboles;
-
                 if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
                     Agregar(entrada.get(i));
                 }
@@ -81,7 +72,6 @@ public class Funcionalidades {
                 System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
             }
         }
-        return salida;
     }
 //Complejidad O(1)
     //Realiza las comparacion para saber si esta operacion obtuvo la mayor ganancia en arboles
@@ -105,15 +95,17 @@ public class Funcionalidades {
 
     }
     /*Modificacion del 23 de febrero Mauro Castillo
-    En esta funcion agrego las restricciones para los algoritmos
+     En esta funcion agrego las restricciones para los algoritmos
      En esta funcion agrego las restracciones para la captacion de Objetos */
 
     private void Agregar(Rodales entrada) {
+        tmpNumeroArboles += entrada.numero_arboles;
         tmpcosto += entrada.costo_estimado;
         if (tmpcosto <= umbral) {
             mayorNumeroArbolesTemporal.add(entrada);
         } else {
             tmpcosto -= entrada.costo_estimado;
+            tmpNumeroArboles -= entrada.numero_arboles;
         }
 
     }

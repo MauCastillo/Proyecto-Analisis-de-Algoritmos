@@ -33,7 +33,6 @@ public class Funcionalidades {
      Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
     public ArrayList<Rodal> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
-        System.out.println("+++++++++++++ Punto " + punto + " entrada " + entrada.size());
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
         //Almaceno el valor de numero de arboles par saber quien es mayor
@@ -46,7 +45,6 @@ public class Funcionalidades {
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
                 Agregar(entrada.get(i));
-                System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
         }
         return Solucion;
@@ -55,28 +53,21 @@ public class Funcionalidades {
     /*Complejida O(n)
      Esta funcion separa en un punto del arreglo que identifique com la varieable inicio y compara si no se solapa con todos los elementos anteriores 
      a el*/
-    public ArrayList<Rodal> MaximoNumeroRodalesReverse(int inicio) {
+    public void MaximoNumeroRodalesReverse(int inicio) {
         int punto = inicio - 1;
-        System.out.println("Punto " + punto + " entrada " + entrada.size());
-        ArrayList<Rodal> salida = new ArrayList<>();
         //entrada.
         //Este algoritmo resuel el problema del maximo numero de rodales permitido
         int contador = 1;
         for (int i = punto; i > 0; i--) {
             Date date1 = entrada.get(entrada.size() - contador).fecha_inicio;
             Date date2 = entrada.get(i).fecha_fin;
-
             if (date2.before(date1)) {
-                salida.add(entrada.get(i));
-
                 if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
                     Agregar(entrada.get(i));
                 }
                 contador++;
-                System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
             }
         }
-        return salida;
     }
 //Complejidad O(1)
     //Realiza las comparacion para saber si esta operacion obtuvo la mayor ganancia en arboles
@@ -103,8 +94,8 @@ public class Funcionalidades {
      En esta funcion agrego las restracciones para la captacion de Objetos la diferencia de esto al punto 3 Esque cambien la variable de costo por 
      numero de arboles*/
 
+    /* Compejida O(n) */
     private void Agregar(Rodal entrada) {
-
         tmpNumeroArboles += entrada.numero_arboles;
         tmpNumeroEmpleados += entrada.numero_empleados;
         /*Restriciones que contrala que no se pase del umbral establesido*/
@@ -113,9 +104,7 @@ public class Funcionalidades {
         } else {
             tmpNumeroArboles -= entrada.numero_arboles;
             tmpNumeroEmpleados -= entrada.numero_empleados;
-
         }
-
     }
 
     /*Esta sesion del codigo esta dedicada a controlar las salidas de informacion*/

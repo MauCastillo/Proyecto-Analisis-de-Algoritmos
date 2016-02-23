@@ -1,12 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Construccion del Punto 4
  */
 package proyectoalgoritmos;
 
 import Logica.Algoritmos;
-import Logica.Rodal;
+import Logica.Rodales;
 import ModuloArchivos.Lectura;
 import java.util.ArrayList;
 import Logica.Funcionalidades;
@@ -24,20 +22,15 @@ public class ProyectoAlgoritmos {
      *
      */
     public static void main(String[] args) {
-
         Lectura lectura = new Lectura();
         Algoritmos ordenamieto = new Algoritmos();
         Funcionalidades funcionalidades = new Funcionalidades();
-        ArrayList<Rodal> c = lectura.ReadFile();
+        ArrayList<Rodales> c = lectura.ReadFile();
+        funcionalidades.umbral = lectura.getUmbral();
 
 //Ordeno el arreglo con el algoritmo mergeSort Complejida  O(nlogn)
-        ArrayList<Rodal> MergeOut = ordenamieto.mergeSort(c);
+        ArrayList<Rodales> MergeOut = ordenamieto.mergeSort(c);
         funcionalidades.entrada = MergeOut;
-        /*En esta parte agregao los umbrales estraidos del archivo plano a la funcion*/
-        funcionalidades.umbralArboles = lectura.getUmbral();
-        funcionalidades.umbralEmpleados = lectura.getUmbralEmpleados();
-
-    
         /*La complejida Total de este ciclo es de O(n^2) porque al relizar la llamada a las funciones
          MaximoNumeroRodales(i); 
          MaximoNumeroRodalesReverse(i);
@@ -47,14 +40,13 @@ public class ProyectoAlgoritmos {
         time_start = System.currentTimeMillis();
         for (int i = 0; i < MergeOut.size(); i++) {
             funcionalidades.Solucion.clear();
-            funcionalidades.MaximoNumeroRodales(i); //Calculo es costo de tiempo del algoritmo// 
+            funcionalidades.MaximoNumeroRodales(i);
             funcionalidades.MaximoNumeroRodalesReverse(i);
             funcionalidades.Probar();
         }
         time_end = System.currentTimeMillis();
         System.out.println("the task has taken " + (time_end - time_start) + " milliseconds");
-        funcionalidades.ImprimirArchivo(funcionalidades.MayorNumeroArboles);
-
+        funcionalidades.ImprimirArchivo(funcionalidades.mayorNumeroArboles);
     }
 
 }
