@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    Construccion del Punto 4
  */
 package proyectoalgoritmos;
 
@@ -10,7 +8,7 @@ import Logica.Rodales;
 import ModuloArchivos.Lectura;
 import java.util.ArrayList;
 import Logica.Funcionalidades;
-import javax.swing.JOptionPane;
+
 
 /**
  * Este Proyecto no cumple con las especificaciones del paradigma orientado a

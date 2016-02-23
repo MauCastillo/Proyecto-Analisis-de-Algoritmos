@@ -22,7 +22,7 @@ public class Funcionalidades {
     int tmpNumeroEmpleados = 0;
     public ArrayList<Rodal> entrada = new ArrayList<>();
     public ArrayList<Rodal> MayorNumeroArboles = new ArrayList<>();
-    public ArrayList<Rodal> MayorNumeroArbolesTemporal = new ArrayList<>();
+    public ArrayList<Rodal> mayorNumeroArbolesTemporal = new ArrayList<>();
     SimpleDateFormat cambio_Formato_Fecha = new SimpleDateFormat("dd/MM/yyyy");
     Rodal inicial_Rodal = new Rodal();
     public ArrayList<Rodal> Solucion = new ArrayList<>();
@@ -33,31 +33,20 @@ public class Funcionalidades {
      Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
     public ArrayList<Rodal> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
+        System.out.println("+++++++++++++ Punto " + punto + " entrada " + entrada.size());
         inicial_Rodal = entrada.get(punto);
-        tmpNumeroArboles += inicial_Rodal.numero_arboles;
-        //Condicion de restriccion
+        Solucion.add(inicial_Rodal);
+        //Almaceno el valor de numero de arboles par saber quien es mayor
+        Agregar(inicial_Rodal);
+        //Este algoritmo resuel el problema del maximo numero de rodales permitido    
+        for (int i = punto; i < entrada.size(); i++) {
+            Date date1 = Solucion.get(Solucion.size() - 1).fecha_fin;
+            Date date2 = entrada.get(i).fecha_inicio;
 
-        if (inicial_Rodal.getNumero_empleados() <= umbralEmpleados && tmpNumeroArboles <= umbralArboles) {
-            Solucion.add(inicial_Rodal);
-            //Almaceno el valor de numero de arboles par saber quien es mayor
-            MayorNumeroArbolesTemporal.add(inicial_Rodal);
-            //Este algoritmo resuel el problema del maximo numero de rodales permitido    
-            for (int i = punto; i < entrada.size(); i++) {
-                Date date1 = Solucion.get(Solucion.size() - 1).fecha_fin;
-                Date date2 = entrada.get(i).fecha_inicio;
-
-                if (!date2.before(date1)) {
-                    //Modificacion para umbrales de arboles y empleador
-                    tmpNumeroArboles += entrada.get(i).numero_arboles;
-                    if (entrada.get(i).getNumero_empleados() <= umbralEmpleados && tmpNumeroArboles <= umbralArboles) {
-
-                        Solucion.add(entrada.get(i));
-                        MayorNumeroArbolesTemporal.add(entrada.get(i));
-                    } else {
-                        tmpNumeroArboles -= entrada.get(i).numero_arboles;
-                    }
-
-                }
+            if (!date2.before(date1)) {
+                Solucion.add(entrada.get(i));
+                Agregar(entrada.get(i));
+                System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
         }
         return Solucion;
@@ -78,19 +67,10 @@ public class Funcionalidades {
             Date date2 = entrada.get(i).fecha_fin;
 
             if (date2.before(date1)) {
+                salida.add(entrada.get(i));
 
-                //Exprecion a crear umbral de arboles y empleados
-/*Creado por Mauro Castillo*/
-                tmpNumeroArboles += entrada.get(i).numero_arboles;
-
-                if (entrada.get(i).getNumero_empleados() <= umbralEmpleados && tmpNumeroArboles <= umbralArboles) {
-                    salida.add(entrada.get(i));
-
-                    if (!MayorNumeroArbolesTemporal.contains(entrada.get(i))) {
-                        MayorNumeroArbolesTemporal.add(entrada.get(i));
-                    }
-                } else {
-                    tmpNumeroArboles -= entrada.get(i).numero_arboles;
+                if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
+                    Agregar(entrada.get(i));
                 }
                 contador++;
                 System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
@@ -101,24 +81,44 @@ public class Funcionalidades {
 //Complejidad O(1)
     //Realiza las comparacion para saber si esta operacion obtuvo la mayor ganancia en arboles
     //Comparo el valor que ya existe y el nuevo si el nuevo es mayor almaceno el nuevo. de lo contrario lo ignoro
+    //Ademas agrego la condicion de el umbral establecido
 
     public void Probar() {
         if (tmpNumeroArboles > maximoNumeroArboles) {
-
             maximoNumeroArboles = tmpNumeroArboles;
+
             try {
-                MayorNumeroArboles = (ArrayList<Rodal>) MayorNumeroArbolesTemporal.clone();
+                MayorNumeroArboles = (ArrayList<Rodal>) mayorNumeroArbolesTemporal.clone();
             } catch (Exception e) {
                 JOptionPane.showInputDialog(this, "Si sale este Mensaja Algo anda Muy Mal ");
             }
-            System.out.println("|||||||||||||||||||||| Ganador |||||||||||||| " + maximoNumeroArboles);
         }
         tmpNumeroArboles = 0;
+        tmpNumeroEmpleados = 0;
+        mayorNumeroArbolesTemporal.clear();
 
-        MayorNumeroArbolesTemporal.clear();
+    }
+    /*Modificacion del 23 de febrero Mauro Castillo
+     En esta funcion agrego las restricciones para los algoritmos
+     En esta funcion agrego las restracciones para la captacion de Objetos la diferencia de esto al punto 3 Esque cambien la variable de costo por 
+     numero de arboles*/
+
+    private void Agregar(Rodal entrada) {
+
+        tmpNumeroArboles += entrada.numero_arboles;
+        tmpNumeroEmpleados += entrada.numero_empleados;
+        /*Restriciones que contrala que no se pase del umbral establesido*/
+        if (tmpNumeroArboles <= umbralArboles && tmpNumeroEmpleados <= umbralEmpleados) {
+            mayorNumeroArbolesTemporal.add(entrada);
+        } else {
+            tmpNumeroArboles -= entrada.numero_arboles;
+            tmpNumeroEmpleados -= entrada.numero_empleados;
+
+        }
 
     }
 
+    /*Esta sesion del codigo esta dedicada a controlar las salidas de informacion*/
     /*Funcion que imprime en pantalla full HD*/
     public void ImprimirPantalla(ArrayList<Rodal> entrada_arraylist) {
 
@@ -134,6 +134,7 @@ public class Funcionalidades {
         }
 
     }
+//Imprime el informacion en un archivo plano
 
     public void ImprimirArchivo(ArrayList<Rodal> entrada_arraylist) {
         Escritura escritura = new Escritura();

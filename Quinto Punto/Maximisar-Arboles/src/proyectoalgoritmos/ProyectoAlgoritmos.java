@@ -38,7 +38,7 @@ public class ProyectoAlgoritmos {
         funcionalidades.umbralArboles = lectura.getUmbral();
         funcionalidades.umbralEmpleados = lectura.getUmbralEmpleados();
 
-        System.out.println("MergeSize " + MergeOut.size());
+        System.out.println(" Arboles " + lectura.getUmbral() );
         /*La complejida Total de este ciclo es de O(n^2) porque al relizar la llamada a las funciones
         MaximoNumeroRodales(i); 
         MaximoNumeroRodalesReverse(i);
