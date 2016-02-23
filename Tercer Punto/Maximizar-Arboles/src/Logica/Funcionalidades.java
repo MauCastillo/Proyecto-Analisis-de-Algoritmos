@@ -37,9 +37,8 @@ public class Funcionalidades {
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
         //Almaceno el valor de numero de arboles par saber quien es mayor
-        mayorNumeroArbolesTemporal.add(inicial_Rodal);
+        Agregar(inicial_Rodal);
         tmpNumeroArboles += inicial_Rodal.numero_arboles;
-        tmpcosto += inicial_Rodal.costo_estimado;
 
         //Este algoritmo resuel el problema del maximo numero de rodales permitido    
         for (int i = punto; i < entrada.size(); i++) {
@@ -49,9 +48,8 @@ public class Funcionalidades {
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
-                tmpcosto += entrada.get(i).costo_estimado;
-                
-                mayorNumeroArbolesTemporal.add(entrada.get(i));
+
+                Agregar(entrada.get(i));
                 System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
         }
@@ -75,9 +73,9 @@ public class Funcionalidades {
             if (date2.before(date1)) {
                 salida.add(entrada.get(i));
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
-                tmpcosto += entrada.get(i).costo_estimado;
+
                 if (!mayorNumeroArbolesTemporal.contains(entrada.get(i))) {
-                    mayorNumeroArbolesTemporal.add(entrada.get(i));
+                    Agregar(entrada.get(i));
                 }
                 contador++;
                 System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
@@ -91,7 +89,7 @@ public class Funcionalidades {
     //Ademas agrego la condicion de el umbral establecido
 
     public void Probar() {
-        if (tmpNumeroArboles > maximoNumeroArboles && tmpcosto <= umbral ) {
+        if (tmpNumeroArboles > maximoNumeroArboles && tmpcosto > costo) {
             maximoNumeroArboles = tmpNumeroArboles;
             costo = tmpcosto;
             try {
@@ -104,6 +102,19 @@ public class Funcionalidades {
         tmpNumeroArboles = 0;
         tmpcosto = 0;
         mayorNumeroArbolesTemporal.clear();
+
+    }
+    /*Modificacion del 23 de febrero Mauro Castillo
+    En esta funcion agrego las restricciones para los algoritmos
+     En esta funcion agrego las restracciones para la captacion de Objetos */
+
+    private void Agregar(Rodales entrada) {
+        tmpcosto += entrada.costo_estimado;
+        if (tmpcosto <= umbral) {
+            mayorNumeroArbolesTemporal.add(entrada);
+        } else {
+            tmpcosto -= entrada.costo_estimado;
+        }
 
     }
 
@@ -125,6 +136,7 @@ public class Funcionalidades {
 //Imprime el informacion en un archivo plano
 //
 //    
+
     public void ImprimirArchivo(ArrayList<Rodales> entrada_arraylist) {
         Escritura escritura = new Escritura();
         ArrayList<Rodales> c = entrada_arraylist;
