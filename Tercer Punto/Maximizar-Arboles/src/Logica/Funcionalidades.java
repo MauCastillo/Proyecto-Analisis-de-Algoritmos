@@ -22,16 +22,16 @@ public class Funcionalidades {
     int tmpcosto = 0;
     int costo = 0;
     public int umbral = 0;
-    public ArrayList<Rodales> entrada = new ArrayList<>();
-    public ArrayList<Rodales> mayorNumeroArboles = new ArrayList<>();
-    public ArrayList<Rodales> mayorNumeroArbolesTemporal = new ArrayList<>();
+    public ArrayList<Rodal> entrada = new ArrayList<>();
+    public ArrayList<Rodal> mayorNumeroArboles = new ArrayList<>();
+    public ArrayList<Rodal> mayorNumeroArbolesTemporal = new ArrayList<>();
     SimpleDateFormat cambio_Formato_Fecha = new SimpleDateFormat("dd/MM/yyyy");
-    Rodales inicial_Rodal = new Rodales();
-    public ArrayList<Rodales> Solucion = new ArrayList<>();
+    Rodal inicial_Rodal = new Rodal();
+    public ArrayList<Rodal> Solucion = new ArrayList<>();
 
     /*Complejida O(n)
      Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
-    public ArrayList<Rodales> MaximoNumeroRodales(int inicio) {
+    public ArrayList<Rodal> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
@@ -82,7 +82,7 @@ public class Funcionalidades {
             maximoNumeroArboles = tmpNumeroArboles;
             costo = tmpcosto;
             try {
-                mayorNumeroArboles = (ArrayList<Rodales>) mayorNumeroArbolesTemporal.clone();
+                mayorNumeroArboles = (ArrayList<Rodal>) mayorNumeroArbolesTemporal.clone();
             } catch (Exception e) {
                 JOptionPane.showInputDialog(this, "Si sale este Mensaja Algo anda Muy Mal ");
             }
@@ -96,7 +96,7 @@ public class Funcionalidades {
      En esta funcion agrego las restricciones para los algoritmos
      En esta funcion agrego las restracciones para la captacion de Objetos */
 
-    private void Agregar(Rodales entrada) {
+    private void Agregar(Rodal entrada) {
         tmpNumeroArboles += entrada.numero_arboles;
         tmpcosto += entrada.costo_estimado;
         if (tmpcosto <= umbral) {
@@ -109,10 +109,10 @@ public class Funcionalidades {
     }
 
     /*Funcion que imprime en pantalla full HD*/
-    public void ImprimirPantalla(ArrayList<Rodales> entrada_arraylist) {
+    public void ImprimirPantalla(ArrayList<Rodal> entrada_arraylist) {
 
-        ArrayList<Rodales> c = entrada_arraylist;
-        for (Rodales c1 : c) {
+        ArrayList<Rodal> c = entrada_arraylist;
+        for (Rodal c1 : c) {
             System.out.println("-- Imprimir --");
             System.out.println("Id " + c1.getId());
             System.out.println("Numero de Arboles " + c1.getNumero_arboles());
@@ -127,9 +127,9 @@ public class Funcionalidades {
 //
 //    
 
-    public void ImprimirArchivo(ArrayList<Rodales> entrada_arraylist) {
+    public void ImprimirArchivo(ArrayList<Rodal> entrada_arraylist) {
         Escritura escritura = new Escritura();
-        ArrayList<Rodales> c = entrada_arraylist;
+        ArrayList<Rodal> c = entrada_arraylist;
         escritura.setAddelement(c.size());
         for (int i = 0; i < c.size(); i++) {
             escritura.setAddelement("id: " + entrada_arraylist.get(i).id);
