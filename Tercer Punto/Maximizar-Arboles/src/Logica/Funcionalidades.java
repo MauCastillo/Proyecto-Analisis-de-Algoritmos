@@ -45,7 +45,7 @@ public class Funcionalidades {
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
                 Agregar(entrada.get(i));
-                System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
+                
             }
         }
         return Solucion;
@@ -56,7 +56,7 @@ public class Funcionalidades {
      a el*/
     public void MaximoNumeroRodalesReverse(int inicio) {
         int punto = inicio - 1;
-        System.out.println("Punto " + punto + " entrada " + entrada.size());
+
 
         //entrada.
         //Este algoritmo resuel el problema del maximo numero de rodales permitido
@@ -69,7 +69,6 @@ public class Funcionalidades {
                     Agregar(entrada.get(i));
                 }
                 contador++;
-                System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
             }
         }
     }
@@ -87,7 +86,6 @@ public class Funcionalidades {
             } catch (Exception e) {
                 JOptionPane.showInputDialog(this, "Si sale este Mensaja Algo anda Muy Mal ");
             }
-            System.out.println("|||||||||||||||||||||| Ganador |||||||||||||| " + maximoNumeroArboles + " Costo " + costo);
         }
         tmpNumeroArboles = 0;
         tmpcosto = 0;
