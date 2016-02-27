@@ -32,7 +32,6 @@ public class Funcionalidades {
     Esta funcion se para en en un punto compara sino se solapa el rodal con los demas elementos del arreglo*/
     public ArrayList<Rodales> MaximoNumeroRodales(int inicio) {
         int punto = inicio;
-        System.out.println("+++++++++++++ Punto " + punto + " entrada " + entrada.size());
         inicial_Rodal = entrada.get(punto);
         Solucion.add(inicial_Rodal);
         //Almaceno el valor de numero de arboles par saber quien es mayor
@@ -50,7 +49,7 @@ public class Funcionalidades {
                 Solucion.add(entrada.get(i));
                 tmpNumeroArboles += entrada.get(i).numero_arboles;
                 MayorNumeroArbolesTemporal.add(entrada.get(i));
-                System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
+                
             }
         }
         return Solucion;
@@ -61,7 +60,6 @@ public class Funcionalidades {
     a el*/
     public ArrayList<Rodales> MaximoNumeroRodalesReverse(int inicio) {
         int punto = inicio - 1;
-        System.out.println("Punto " + punto + " entrada " + entrada.size());
         ArrayList<Rodales> salida = new ArrayList<>();
         //entrada.
         //Este algoritmo resuel el problema del maximo numero de rodales permitido
@@ -79,7 +77,7 @@ public class Funcionalidades {
                     MayorNumeroArbolesTemporal.add(entrada.get(i));
                 }
                 contador++;
-                System.out.println(" Date1 Fecha donde esto inicio : " + cambio_Formato_Fecha.format(date1) + "  Date2 Fecha donde anterior fin: " + cambio_Formato_Fecha.format(date2));
+                
             }
         }
         return salida;
@@ -96,7 +94,6 @@ public class Funcionalidades {
             }catch(Exception e){
                 JOptionPane.showInputDialog(this,"Si sale este Mensaja Algo anda Muy Mal " );
             }
-            System.out.println("|||||||||||||||||||||| Ganador |||||||||||||| " + maximoNumeroArboles);
         }
         tmpNumeroArboles = 0;
         MayorNumeroArbolesTemporal.clear();

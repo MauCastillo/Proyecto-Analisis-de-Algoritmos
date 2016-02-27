@@ -31,7 +31,6 @@ public class Funcionalidades {
 
             if (!date2.before(date1)) {
                 Solucion.add(entrada.get(i));
-                System.out.println(" Date1 " + cambio_Formato_Fecha.format(date1) + " Date2 " + cambio_Formato_Fecha.format(date2));
             }
         }
         return Solucion;

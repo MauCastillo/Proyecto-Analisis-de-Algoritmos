@@ -28,7 +28,6 @@ public class ProyectoAlgoritmos {
         Lectura lectura = new Lectura();
         Algoritmos ordenamieto = new Algoritmos();
         Funcionalidades funcionalidades = new Funcionalidades();
-        int numero_maximo = 1000;
         /*Eliminar prueba de lectura posteriormente*/
         ArrayList<Rodales> c = lectura.ReadFile();
         long time_start, time_end;
@@ -37,9 +36,10 @@ public class ProyectoAlgoritmos {
         ArrayList<Rodales> MergeOut = ordenamieto.mergeSort(c);
         MergeOut = (funcionalidades.MaximoNumeroRodales(MergeOut)); //Calculo es costo de tiempo del algoritmo//
         time_end = System.currentTimeMillis();
+        System.out.println("the task has taken " + (time_end - time_start) + " milliseconds");
         funcionalidades.ImprimirArchivo(MergeOut);
 
-        System.out.println("the task has taken " + (time_end - time_start) + " milliseconds");
+       
     }
 
 }
