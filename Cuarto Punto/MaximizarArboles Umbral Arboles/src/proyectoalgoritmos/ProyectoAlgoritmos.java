@@ -4,7 +4,7 @@
 package proyectoalgoritmos;
 
 import Logica.Algoritmos;
-import Logica.Rodales;
+import Logica.Rodal;
 import ModuloArchivos.Lectura;
 import java.util.ArrayList;
 import Logica.Funcionalidades;
@@ -25,12 +25,14 @@ public class ProyectoAlgoritmos {
         Lectura lectura = new Lectura();
         Algoritmos ordenamieto = new Algoritmos();
         Funcionalidades funcionalidades = new Funcionalidades();
-        ArrayList<Rodales> c = lectura.ReadFile();
+        ArrayList<Rodal> c = lectura.ReadFile();
         funcionalidades.umbral = lectura.getUmbral();
 
 //Ordeno el arreglo con el algoritmo mergeSort Complejida  O(nlogn)
-        ArrayList<Rodales> MergeOut = ordenamieto.mergeSort(c);
-        funcionalidades.entrada = MergeOut;
+            ArrayList<Rodal> MergeOut = (ArrayList<Rodal>) ordenamieto.mergeSort(c, 0).clone();
+            ArrayList<Rodal> MergeOut_arboles = (ArrayList<Rodal>) ordenamieto.mergeSort(c, 1).clone();
+            
+        
         /*La complejida Total de este ciclo es de O(n^2) porque al relizar la llamada a las funciones
          MaximoNumeroRodales(i); 
          MaximoNumeroRodalesReverse(i);
@@ -39,10 +41,19 @@ public class ProyectoAlgoritmos {
         long time_start, time_end;
         time_start = System.currentTimeMillis();
         for (int i = 0; i < MergeOut.size(); i++) {
-            funcionalidades.Solucion.clear();
-            funcionalidades.MaximoNumeroRodales(i);
-            funcionalidades.MaximoNumeroRodalesReverse(i);
-            funcionalidades.Probar();
+                            /*Casos Base*/
+                funcionalidades.entrada = MergeOut;
+                funcionalidades.Solucion.clear();
+                funcionalidades.MaximoNumeroRodales(i); //
+                funcionalidades.MaximoNumeroRodalesReverse(i);
+
+                /*Posibilidades alternas*/
+                funcionalidades.entrada = MergeOut_arboles;
+                funcionalidades.Solucion.clear();
+                funcionalidades.MaximoNumeroRodales(i); //
+                funcionalidades.MaximoNumeroRodalesReverse(i);
+                /*Probar el mayor beneficio*/
+                funcionalidades.Probar();
         }
         time_end = System.currentTimeMillis();
         System.out.println("the task has taken " + (time_end - time_start) + " milliseconds");

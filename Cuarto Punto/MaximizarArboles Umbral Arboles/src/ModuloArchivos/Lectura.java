@@ -5,7 +5,7 @@
  */
 package ModuloArchivos;
 
-import Logica.Rodales;
+import Logica.Rodal;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.File;
@@ -38,13 +38,13 @@ public class Lectura {
 
 
 
-    public ArrayList<Rodales> ReadFile() {
+    public ArrayList<Rodal> ReadFile() {
         numero_maximo_arboles = 0;
         File archivo;
         FileReader fr = null;
         BufferedReader br;
-        Rodales rodal;
-        ArrayList<Rodales> zonas = new ArrayList<>();
+        Rodal rodal;
+        ArrayList<Rodal> zonas = new ArrayList<>();
 
         try {
             // Apertura del fichero y creacion de BufferedReader para poder
@@ -73,7 +73,7 @@ public class Lectura {
                     fecha_inicio = tokens.nextToken();
                     fecha_fin = tokens.nextToken();
                     numero_empleados = Integer.parseInt(tokens.nextToken());
-                    rodal = new Rodales(id, numero_arboles, costo_estimado, fecha_inicio, fecha_fin, numero_empleados);
+                    rodal = new Rodal(id, numero_arboles, costo_estimado, fecha_inicio, fecha_fin, numero_empleados);
                     zonas.add(rodal);
 
                     if (numero_arboles > numero_maximo_arboles) {

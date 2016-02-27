@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Soporte
  */
 public class Algoritmos {
-
+    int tipoOrdenamiento = 0;
     private ArrayList<Rodal> salidaMersort = new ArrayList<>();
 
     public ArrayList<Rodal> getSalidaMersort() {
@@ -54,7 +54,8 @@ public class Algoritmos {
     }
 /*Complejida O(nlgn) diseñado para ordenar las fechas de finalizacion de menor a Mayor
     La modificaion de coparacion esta en la clase rodal*/
-    public ArrayList <Rodal> mergeSort(ArrayList<Rodal> a) {
+    public ArrayList<Rodal> mergeSort(ArrayList<Rodal> a, int tipo) {
+         this.tipoOrdenamiento = tipo;
         ArrayList<Rodal> tmpArray = new ArrayList<>();
         for (int i = 0; i < a.size(); i++) {
             tmpArray.add(a.get(i));
@@ -81,10 +82,19 @@ public class Algoritmos {
 
         // Main loop
         while (leftPos <= leftEnd && rightPos <= rightEnd) {
-            if (a.get(leftPos).compareTo(a.get(rightPos)) <= 0) {
-                tmpArray.set(tmpPos++, a.get(leftPos++));
-            } else {
-                tmpArray.set(tmpPos++, a.get(rightPos++));
+            if (tipoOrdenamiento == 0) {
+                if (a.get(leftPos).compareTo(a.get(rightPos)) <= 0) {
+                    tmpArray.set(tmpPos++, a.get(leftPos++));
+                } else {
+                    tmpArray.set(tmpPos++, a.get(rightPos++));
+                }
+            } else if (tipoOrdenamiento == 1) {
+                if (a.get(leftPos).compareTo1(a.get(rightPos)) <= 0) {
+                    tmpArray.set(tmpPos++, a.get(leftPos++));
+                } else {
+                    tmpArray.set(tmpPos++, a.get(rightPos++));
+                }
+
             }
         }
 
@@ -103,7 +113,7 @@ public class Algoritmos {
             a.set(rightEnd, tmpArray.get(rightEnd));
         }
         salidaMersort = a;
-        
+
     }
     
 }

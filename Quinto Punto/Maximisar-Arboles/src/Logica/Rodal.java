@@ -104,5 +104,15 @@ public class Rodal implements Comparable<Rodal> {
     public int compareTo(Rodal other) {
         return fecha_fin.compareTo(other.fecha_fin);
     }
+            /*Funcion para ordenar por mayor numero de arboles*/
+    public int compareTo1(Rodal other) {
+        int salida = 0;
+        if (numero_arboles < other.numero_arboles) {
+            salida = -1;
+        } else if (numero_arboles > other.numero_arboles) {
+            salida = 1;
+        }
+        return salida;
+    }
 
 }
