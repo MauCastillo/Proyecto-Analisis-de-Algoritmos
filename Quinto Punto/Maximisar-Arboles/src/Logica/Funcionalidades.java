@@ -20,6 +20,7 @@ public class Funcionalidades {
     int maximoNumeroArboles = 0;
     int tmpNumeroArboles = 0;
     int tmpNumeroEmpleados = 0;
+    int maximoempleados = 0;
     public ArrayList<Rodal> entrada = new ArrayList<>();
     public ArrayList<Rodal> MayorNumeroArboles = new ArrayList<>();
     public ArrayList<Rodal> mayorNumeroArbolesTemporal = new ArrayList<>();
@@ -76,12 +77,14 @@ public class Funcionalidades {
 
     public void Probar() {
         if (tmpNumeroArboles > maximoNumeroArboles) {
-            maximoNumeroArboles = tmpNumeroArboles;
+            if (tmpNumeroEmpleados > maximoempleados && tmpNumeroEmpleados >= umbralEmpleados) {
+                maximoNumeroArboles = tmpNumeroArboles;
 
-            try {
-                MayorNumeroArboles = (ArrayList<Rodal>) mayorNumeroArbolesTemporal.clone();
-            } catch (Exception e) {
-                JOptionPane.showInputDialog(this, "Si sale este Mensaja Algo anda Muy Mal ");
+                try {
+                    MayorNumeroArboles = (ArrayList<Rodal>) mayorNumeroArbolesTemporal.clone();
+                } catch (Exception e) {
+                    JOptionPane.showInputDialog(this, "Si sale este Mensaja Algo anda Muy Mal ");
+                }
             }
         }
         tmpNumeroArboles = 0;
@@ -99,7 +102,7 @@ public class Funcionalidades {
         tmpNumeroArboles += entrada.numero_arboles;
         tmpNumeroEmpleados += entrada.numero_empleados;
         /*Restriciones que contrala que no se pase del umbral establesido*/
-        if (tmpNumeroArboles <= umbralArboles && tmpNumeroEmpleados <= umbralEmpleados) {
+        if (tmpNumeroArboles <= umbralArboles) {
             mayorNumeroArbolesTemporal.add(entrada);
         } else {
             tmpNumeroArboles -= entrada.numero_arboles;
