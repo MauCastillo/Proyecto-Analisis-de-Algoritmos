@@ -77,7 +77,7 @@ public class Funcionalidades {
 
     public void Probar() {
         if (tmpNumeroArboles > maximoNumeroArboles) {
-            if (tmpNumeroEmpleados > maximoempleados && tmpNumeroEmpleados >= umbralEmpleados) {
+            if (tmpNumeroEmpleados > maximoempleados && tmpNumeroEmpleados > umbralEmpleados) {
                 maximoNumeroArboles = tmpNumeroArboles;
 
                 try {
