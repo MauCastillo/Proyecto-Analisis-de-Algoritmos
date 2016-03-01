@@ -51,6 +51,8 @@ public class ProyectoAlgoritmos {
                 funcionalidades.Solucion.clear();
                 funcionalidades.MaximoNumeroRodales(i); //
                 funcionalidades.MaximoNumeroRodalesReverse(i);
+                /*Probar el mayor beneficio*/
+                funcionalidades.Probar();
 
                 /*Posibilidades alternas*/
                 funcionalidades.entrada = MergeOut_arboles;
